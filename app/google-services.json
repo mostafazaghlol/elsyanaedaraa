@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "944386092118",
+    "firebase_url": "https://elsyanaedaraa.firebaseio.com",
+    "project_id": "elsyanaedaraa",
+    "storage_bucket": "elsyanaedaraa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:944386092118:android:e839f7fe4deffaa4",
+        "android_client_info": {
+          "package_name": "androiddeveloper.hazzaa.yasser.elsyanaedaraa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "944386092118-mae6bknq0f0lo4e63idpl4qf7cgcq94a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "androiddeveloper.hazzaa.yasser.elsyanaedaraa",
+            "certificate_hash": "11da794b10bdfe61b650e7a5a5cab842c6562dc6"
+          }
+        },
+        {
+          "client_id": "944386092118-f31v4jk8k36d2t383p58gltiseqjb741.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "androiddeveloper.hazzaa.yasser.elsyanaedaraa",
+            "certificate_hash": "5d4b82a4ae6b94f88535cb1cfc58a84500bef8a6"
+          }
+        },
+        {
+          "client_id": "944386092118-7aris2bkhpj1bqjlgl50v8g815kqa498.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqdnuKr6b0OELK7w-XdCOKEhUHzWi5R-s"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "944386092118-7aris2bkhpj1bqjlgl50v8g815kqa498.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

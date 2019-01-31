@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">elsyanaedaraa</string>
+    <string name="app_name">تطبيق الإدارة</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="internet_error">غير متصل بالانترنت</string>
 </resources>
