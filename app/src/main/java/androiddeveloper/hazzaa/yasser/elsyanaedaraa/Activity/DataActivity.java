@@ -1,6 +1,7 @@
 package androiddeveloper.hazzaa.yasser.elsyanaedaraa.Activity;
 
 import android.app.ActionBar;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -39,7 +40,9 @@ import java.util.List;
 import androiddeveloper.hazzaa.yasser.elsyanaedaraa.Adapter.ordersAdapter;
 import androiddeveloper.hazzaa.yasser.elsyanaedaraa.R;
 import androiddeveloper.hazzaa.yasser.elsyanaedaraa.Volley.ShowIOSRequest;
+import androiddeveloper.hazzaa.yasser.elsyanaedaraa.Volley.updateParameter;
 import androiddeveloper.hazzaa.yasser.elsyanaedaraa.model.ShowIOS;
+import androiddeveloper.hazzaa.yasser.elsyanaedaraa.staticManger;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -59,6 +62,7 @@ public class DataActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data);
+        Intent intent = new Intent(this,OrderActivity.class);
         ButterKnife.bind(this);
         name  = getIntent().getStringExtra("name");
         setTitle(getIntent().getStringExtra("name"));
@@ -104,12 +108,30 @@ public class DataActivity extends AppCompatActivity {
         //        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0000ff")));
         showIOS = new ArrayList<>();
         mOrdersAdapter = new ordersAdapter(this, showIOS, (view, position) -> {
+            ProgressDialog progressDialog = new ProgressDialog(this);
+            progressDialog.setTitle(getString(R.string.app_name));
+            progressDialog.setMessage("جارى التحميل !");
+            progressDialog.show();
             ShowObject = showIOS.get(position);
-            Intent intent = new Intent(this,OrderActivity.class);
-            intent.putExtra("type",type);
-            intent.putExtra("name",name);
-            intent.putExtra("color",color);
-            startActivity(intent);
+            ShowObject.setView("1");
+            updateParameter updateParameter = new updateParameter(new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+
+                }
+            },ShowObject.getIDAir());
+            RequestQueue queue = Volley.newRequestQueue(DataActivity.this);
+            queue.add(updateParameter);
+            queue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
+                @Override
+                public void onRequestFinished(Request<Object> request) {
+                    progressDialog.dismiss();
+                    intent.putExtra("type",type);
+                    intent.putExtra("name",name);
+                    intent.putExtra("color",color);
+                    startActivity(intent);
+                }
+            });
         });
         linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -122,16 +144,35 @@ public class DataActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        SplachActivity.boo = true;
+        startActivity(new Intent(this,MainActivity.class));
+        finish();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i("hi","Resume");
+        mOrdersAdapter.notifyDataSetChanged();
+    }
+
     private void getData() {
         Response.Listener<String> responseListener =response -> {
             try {
                 JSONArray object = new JSONArray(response);
+                JSONObject object1 = object.getJSONObject(0);
                 progressBar.setVisibility(View.INVISIBLE);
+                if(object1.getBoolean("success")){
                 for(int i=0;i<object.length();i++){
                     ShowIOS mShowIOS = new Gson().fromJson(object.getJSONObject(i).toString(),ShowIOS.class);
                     showIOS.add(mShowIOS);
                 }
                 mOrdersAdapter.notifyDataSetChanged();
+
+                }
                 if(showIOS.size() == 0){
                     recyclerView.setVisibility(View.INVISIBLE);
                     text.setVisibility(View.VISIBLE);

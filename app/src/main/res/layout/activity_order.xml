@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#ffffff"
+    android:orientation="vertical"
     tools:context=".Activity.OrderActivity">
 
     <ScrollView
@@ -18,11 +18,33 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/image1"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/no_image"
-                android:id="@+id/image1"/>
+                android:src="@drawable/no_image" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:background="#eeeeee"
+                android:orientation="horizontal"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp">
+
+                <TextView
+                    android:id="@+id/TxtDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|right"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:paddingRight="5dp"
+                    android:text="hiifdgdf "
+                    android:textSize="@dimen/large" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -129,6 +151,7 @@
                     android:text="كود الطلب :"
                     android:textSize="@dimen/large" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/notes"
                 android:layout_width="match_parent"
@@ -139,32 +162,67 @@
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|right"
-                    android:text="الخدمات المطلوبة :"
-                    android:textSize="@dimen/large" />
+
                 <TextView
                     android:id="@+id/TxtNOTS"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|right"
-                android:layout_weight="1"
-                android:gravity="right"
-                android:paddingRight="5dp"
-                android:text="0215455558"
-                android:textSize="@dimen/large" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:paddingRight="5dp"
+                    android:text="0215455558"
+                    android:textSize="@dimen/large" />
             </LinearLayout>
 
-            <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:map="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:id="@+id/map1"
-                android:name="com.google.android.gms.maps.SupportMapFragment"
+            <LinearLayout
+                android:id="@+id/notesOn"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                tools:context=".Activity.OrderActivity" />
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_margin="10dp"
+                android:background="#eeeeee"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="حفظ"
+                    android:textSize="@dimen/large"
+                    android:id="@+id/save"/>
+
+                <EditText
+                    android:id="@+id/TxtNOTSe"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="لا توجد ملاحظات"
+                    android:textSize="@dimen/large" />
+            </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/hi">
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:map="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/map1"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            tools:context=".Activity.OrderActivity" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="لم يتم تحديد المكان"
+            android:id="@+id/noplace"
+            android:textSize="@dimen/xlarge"
+            android:layout_centerInParent="true"
+            android:visibility="invisible"/>
+    </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -174,14 +232,14 @@
                 android:layout_marginRight="10dp">
 
                 <LinearLayout
-                    android:onClick="finish"
+                    android:id="@+id/order2"
 
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
-                    android:id="@+id/order2"
-                    android:background="#eeeeee">
+                    android:background="#eeeeee"
+                    android:onClick="finish">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -193,13 +251,13 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:onClick="finish"
-
                     android:id="@+id/order1"
+
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_weight="1"
-                    android:background="#eeeeee">
+                    android:background="#eeeeee"
+                    android:onClick="finish">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -219,12 +277,12 @@
 
                 <LinearLayout
                     android:id="@+id/order4"
-                    android:onClick="finish"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
-                    android:background="#eeeeee">
+                    android:background="#eeeeee"
+                    android:onClick="finish">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -237,12 +295,12 @@
 
                 <LinearLayout
                     android:id="@+id/order3"
-                    android:onClick="finish"
-
                     android:layout_width="0dp"
+
                     android:layout_height="50dp"
                     android:layout_weight="1"
-                    android:background="#eeeeee">
+                    android:background="#eeeeee"
+                    android:onClick="finish">
 
                     <TextView
                         android:layout_width="match_parent"
